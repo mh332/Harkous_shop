@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - Harkous Shop</title>
+<style>
+:root {
+  --bg: #fff;
+  --fg: #111;
+  --accent: #6b3b2f;
+  --radius: 12px;
+  --maxw: 1200px;
+  --padding: 1rem;
+}
+
+/* RESET */
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { height: 100%; }
+body { 
+  font-family: system-ui, Segoe UI, Roboto, Arial; 
+  color: var(--fg); 
+  background: repeating-linear-gradient(
+    45deg,
+    #fff,
+    #fff 20px,
+    #f3f0eb 20px,
+    #f3f0eb 40px
+  );
+  display: flex; 
+  flex-direction: column; 
+}
+
+/* --- TOOLBAR / HAMBURGER / DROPDOWN --- */
+header {
+  background: linear-gradient(90deg,#000,#6b3b2f);
+  color: #fff;
+  position: relative;
+  z-index: 1000;
+}
+.topbar {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--padding);
+  position: relative;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 18px;
+}
+.logo svg { width: 40px; height: 40px; flex-shrink: 0; }
+.logo div { line-height: 1.2; }
+nav {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+nav a.active { background: rgba(255,255,255,0.08);}
+nav a:hover { background: rgba(255,255,255,0.08);  }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1001;
+}
+.hamburger div {
+  height: 3px;
+  width: 24px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.hamburger.active div:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.hamburger.active div:nth-child(2) { opacity: 0; }
+.hamburger.active div:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+/* Dropdown */
+.nav-dropdown {
+  position: fixed;
+  top: 0;
+  right: -260px;
+  width: 260px;
+  height: 100%;
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px;
+  transition: right 0.3s ease;
+  z-index: 2000;
+}
+.nav-dropdown.show { right: 0; }
+.nav-dropdown a {
+  color: #fff;
+  text-decoration: none;
+  padding: 16px 24px;
+  border-bottom: 1px solid #222;
+  transition: all 0.2s;
+}
+.nav-dropdown a:hover { background: #6b3b2f; transform: translateX(5px); }
+
+/* CONTACT SECTION */
+#contact {
+  padding: 40px 0;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  max-width: 1100px;
+  width: 100%;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.contact-info {
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+.contact-info p { margin-bottom: 12px; font-size: 1rem; }
+iframe {
+  flex: 1 1 400px;
+  width: 100%;
+  height: 350px;
+  border: 0;
+  border-radius: var(--radius);
+  display: block;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+/* MEDIA QUERIES */
+@media(max-width:1024px){ .container { gap: 20px; } }
+@media(max-width:800px){
+  nav { display: none; }
+  .hamburger { display: flex; }
+}
+@media(max-width:768px){
+  .container { flex-direction: column; text-align: center; }
+  .contact-info { text-align: center; }
+  iframe { margin-top: 20px; }
+}
+@media(max-width:320px){
+  .topbar { flex-direction: row; align-items: center; justify-content: space-between; padding: 10px; }
+  .logo div { font-size: 14px; }
+  .nav-dropdown { width: 220px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topbar">
+    <div class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+        <rect x="12" y="20" width="40" height="36" rx="6" ry="6" fill="white" stroke="#6b3b2f" stroke-width="3"/>
+        <path d="M20 36 Q32 48 44 36" stroke="#6b3b2f" stroke-width="3" fill="none"/>
+      </svg>
+      <div>
+        Harkous Shop
+        <div style="font-size:12px;color:rgba(255,255,255,0.8)">Shoes & Bags — Lebanon</div>
+      </div>
+    </div>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Products</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+
+    <div class="hamburger" id="hamburger">
+      <div></div><div></div><div></div>
+    </div>
+
+    <div class="nav-dropdown" id="navDropdown">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Products</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</header>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-info">
+      <p><strong>Harkous Shop</strong></p>
+      <p>Beirut, Lebanon</p>
+      <p>Phone: +961 70 000 000</p>
+    </div>
+    <iframe 
+      src="https://www.google.com/maps?q=Beirut+Lebanon&output=embed" 
+      allowfullscreen="" loading="lazy">
+    </iframe>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Harkous Shop - Lebanon</p>
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const dropdown = document.getElementById('navDropdown');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  dropdown.classList.toggle('show');
+});
+</script>
+
+</body>
+</html>
