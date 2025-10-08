@@ -3,170 +3,124 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About - Harkous Shop</title>
+<title>About — Harkous Shop</title>
 <style>
 :root {
-  --bg: #fff;
-  --fg: #111;
-  --accent: #6b3b2f;
-  --radius: 12px;
-  --maxw: 1200px;
-  --muted: #666;
-  --padding: 1rem;
-  --transition: 0.3s;
+  --bg:#fff;
+  --fg:#111;
+  --accent:#6b3b2f;
+  --radius:12px;
+  --maxw:1000px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--fg);
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+header{
+  background:linear-gradient(90deg,#000,var(--accent));
+  color:#fff;
+  padding:1.5rem;
+  text-align:center;
+  font-size:1.5rem;
+}
+main{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:2rem;
+}
+.about-container{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:2rem;
+  max-width:var(--maxw);
+  margin:auto;
+}
+.about-text{
+  flex:1 1 450px;
+}
+.about-text h2{
+  color:var(--accent);
+  font-size:1.8rem;
+  margin-bottom:1rem;
+}
+.about-text p{
+  font-size:1.1rem;
+  line-height:1.6;
+  margin-bottom:1rem;
+}
+.about-image{
+  flex:1 1 400px;
+  display:flex;
+  justify-content:center;
+}
+.about-image img{
+  width:100%;
+  max-width:400px;
+  border-radius:var(--radius);
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  object-fit:cover;
+}
+footer{
+  background:#000;
+  color:#fff;
+  text-align:center;
+  padding:1rem;
+  margin-top:auto;
 }
 
-/* RESET */
-* {margin:0; padding:0; box-sizing:border-box;}
-body {font-family: system-ui, Segoe UI, Roboto, Arial; color: var(--fg); background: var(--bg);}
-a {text-decoration:none; color: inherit;}
-
-/* LOADER */
-#loader {
-  position: fixed; top:0; left:0; width:100%; height:100%;
-  background:#fff; display:flex; justify-content:center; align-items:center; z-index:5000;
+/* Responsive */
+@media (max-width:700px){
+  .about-container{
+    flex-direction:column;
+    text-align:center;
+  }
+  .about-text h2{
+    font-size:1.5rem;
+  }
 }
-.loader-dots { display:flex; gap:10px; }
-.loader-dots div {
-  width:20px; height:20px; background: var(--accent); border-radius:50%;
-  animation: bounce 0.6s infinite alternate;
-}
-.loader-dots div:nth-child(2) { animation-delay: 0.2s; }
-.loader-dots div:nth-child(3) { animation-delay: 0.4s; }
-@keyframes bounce { 0%{transform:translateY(0);}50%{transform:translateY(-20px);}100%{transform:translateY(0);} }
-
-/* HEADER */
-header { background: linear-gradient(90deg,#000,var(--accent)); color:#fff; position: relative; z-index: 1000; }
-.topbar {
-  max-width: var(--maxw); margin: 0 auto; display:flex; align-items:center; justify-content:space-between; padding:var(--padding);
-}
-.logo { display:flex; align-items:center; gap:12px; font-weight:700; font-size:18px; }
-.logo svg { width:40px; height:40px; flex-shrink:0; }
-.logo div { line-height:1.2; }
-nav { display:flex; gap:16px; align-items:center; }
-nav a { color:#fff; padding:8px 12px; border-radius:8px; transition: all var(--transition); }
-nav a.active, nav a:hover { background: rgba(255,255,255,0.08); color:#fff; }
-
-/* Hamburger */
-.hamburger { display:none; flex-direction: column; gap:5px; cursor:pointer; z-index:1001; }
-.hamburger div { height:3px; width:24px; background:#fff; border-radius:2px; transition: all var(--transition); }
-.hamburger.active div:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
-.hamburger.active div:nth-child(2) { opacity: 0; }
-.hamburger.active div:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
-
-/* Dropdown */
-.nav-dropdown {
-  position: fixed; top:0; right:-260px; width:260px; height:100%; background:#111;
-  display:flex; flex-direction:column; padding-top:60px; transition:right var(--transition); z-index:2000;
-}
-.nav-dropdown.show { right:0; }
-.nav-dropdown a { color:#fff; padding:16px 24px; border-bottom:1px solid #222; transition: all var(--transition); }
-.nav-dropdown a:hover { background:var(--accent); transform:translateX(5px); }
-
-/* HERO */
-.about-hero {
-  background: linear-gradient(90deg,var(--accent) 0%, #000 100%);
-  color:#fff; text-align:center; padding:4rem 1rem 2rem;
-}
-.about-hero h1 { font-size:2rem; margin-bottom:1rem; }
-.about-hero p { max-width:700px; margin:0 auto; line-height:1.6; font-size:1rem; }
-
-/* ABOUT CONTENT */
-.about-content {
-  max-width: var(--maxw); margin:2rem auto; padding:0 1rem;
-  display:flex; flex-wrap:wrap; gap:2rem; align-items:center; justify-content:center;
-}
-.about-text { flex:1 1 400px; }
-.about-text h2 { font-size:1.5rem; margin-bottom:1rem; color: var(--accent); }
-.about-text p { font-size:1rem; line-height:1.6; color: var(--muted); margin-bottom:1rem; }
-.about-image { flex:1 1 300px; display:flex; justify-content:center; }
-.about-image img { max-width:100%; border-radius:var(--radius); box-shadow:0 4px 10px rgba(0,0,0,0.1); }
-
-/* FOOTER */
-footer { text-align:center; padding:2rem 1rem; background: var(--accent); color:#fff; font-size:0.9rem; }
-
-/* MEDIA QUERIES */
-@media(max-width:800px){ nav { display:none; } .hamburger { display:flex; } }
-@media(max-width:768px){ .about-content { flex-direction:column; text-align:center; } .about-image img { width:80%; } }
-@media(max-width:320px){ .topbar { flex-direction:row; justify-content:space-between; padding:10px; } .logo div { font-size:14px; } .nav-dropdown { width:220px; } }
 </style>
 </head>
 <body>
 
-<!-- Loader -->
-<div id="loader">
-  <div class="loader-dots"><div></div><div></div><div></div></div>
-</div>
+<header>About Harkous Shop</header>
 
-<header>
-  <div class="topbar">
-    <div class="logo">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-        <rect x="12" y="20" width="40" height="36" rx="6" ry="6" fill="white" stroke="#6b3b2f" stroke-width="3"/>
-        <path d="M20 36 Q32 48 44 36" stroke="#6b3b2f" stroke-width="3" fill="none"/>
-      </svg>
-      <div>
-        Harkous Shop
-        <div style="font-size:12px;color:rgba(255,255,255,0.8)">Shoes, Bags & Clothing — Lebanon</div>
-      </div>
+<main>
+  <div class="about-container">
+    <div class="about-text">
+      <h2 id="aboutTitleEn">Harkous Shop</h2>
+      <p id="aboutContentEn">Welcome to Harkous Shop, where quality meets tradition and modern fashion.</p>
+
+      <h2 id="aboutTitleAr" dir="rtl" style="margin-top:1.5rem;">هركوس شوب</h2>
+      <p id="aboutContentAr" dir="rtl">مرحبًا بكم في هركوس شوب، حيث تلتقي الجودة بالأناقة والتقاليد الحديثة.</p>
     </div>
 
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="about.html" class="active">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-
-    <div class="hamburger" id="hamburger">
-      <div></div><div></div><div></div>
-    </div>
-
-    <div class="nav-dropdown" id="navDropdown">
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+    <div class="about-image">
+      <img id="aboutImage" src="images/about.jpg" alt="About Image">
     </div>
   </div>
-</header>
+</main>
 
-<section class="about-hero">
-  <h1>About Harkous Shop</h1>
-  <p>We bring you the best Lebanese shoes, bags, underwear, and clothes, blending tradition with modern style for Men, Women, and Kids.</p>
-</section>
-
-<section class="about-content">
-  <div class="about-text">
-    <h2>Our Story</h2>
-    <p>Harkous Shop is a Lebanese brand offering stylish shoes, bags, underwear, and clothes for Men, Women, and Kids. Our mission is to provide quality products with a perfect blend of tradition and modern fashion.</p>
-    <p>Whether you're looking for elegant shoes, everyday sneakers, fashionable bags, or quality clothing, Harkous Shop has something unique for you. Each product is crafted with attention to detail, ensuring style and comfort.</p>
-  </div>
-  <div class="about-image">
-    <img src="https://picsum.photos/400/300?random=11" alt="Harkous Shop Products">
-  </div>
-</section>
-
-<footer>
-  <p>&copy; 2025 Harkous Shop - Lebanon</p>
-</footer>
+<footer>© 2025 Harkous Shop. All Rights Reserved.</footer>
 
 <script>
-const hamburger = document.getElementById('hamburger');
-const dropdown = document.getElementById('navDropdown');
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
-  dropdown.classList.toggle('show');
-});
-
-// Loader fade
-window.addEventListener('load', () => {
-  const loader = document.getElementById('loader');
-  setTimeout(() => {
-    loader.style.opacity = 0;
-    setTimeout(() => loader.style.display = 'none', 500);
-  }, 2000);
-});
+// Load About Info from localStorage (if available)
+const saved = JSON.parse(localStorage.getItem('aboutInfo'));
+if(saved){
+  document.getElementById('aboutTitleEn').textContent = saved.titleEn || 'Harkous Shop';
+  document.getElementById('aboutContentEn').textContent = saved.contentEn || '';
+  document.getElementById('aboutTitleAr').textContent = saved.titleAr || '';
+  document.getElementById('aboutContentAr').textContent = saved.contentAr || '';
+  if(saved.image) document.getElementById('aboutImage').src = saved.image;
+}
 </script>
 
 </body>
